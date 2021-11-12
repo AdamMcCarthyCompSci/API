@@ -56,7 +56,7 @@ router.get("/", function (req, res) {
         });
 
         // Get most commonly available date for each country
-        result.countries.map((country) => {
+        for (let country of result.countries) {
           dateCounts = {};
           for (let date of country.dates) {
             if (date in dateCounts) {
@@ -89,7 +89,7 @@ router.get("/", function (req, res) {
           // Remove data from JSON that is no longer necessary
           delete country.availability;
           delete country.dates;
-        });
+        }
         // Return JSON
         res.json(result);
       }
