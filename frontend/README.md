@@ -2,10 +2,10 @@
 
 Hubspot 2021
 
-cd frontend
-npm install
-npm start
+- cd frontend
+- npm install
+- npm start
 
-cd APIskeleton
-npm install
-nodemon index.js
+- cd APIskeleton
+- npm install
+- nodemon index.js
