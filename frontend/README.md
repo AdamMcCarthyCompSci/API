@@ -1,11 +1,11 @@
-# Getting Started with Create React App
+# Hubspot 2021 Online Application
 
-Hubspot 2021
-
+### Backend:
 - cd frontend
 - npm install
 - npm start
 
+### Frontend
 - cd APIskeleton
 - npm install
 - nodemon index.js
