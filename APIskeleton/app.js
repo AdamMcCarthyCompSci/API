@@ -22,6 +22,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+require("dotenv").config();
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

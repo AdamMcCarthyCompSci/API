@@ -3,12 +3,12 @@ import { useState } from "react";
 import JSONPretty from "react-json-pretty";
 
 function App() {
-  const [data, setData] = useState("");
+  const [data, setData] = useState("Nothing here yet!");
 
   const getData = () => {
     (async () => {
       try {
-        const response = await fetch("http://192.168.178.21:8000/", {
+        const response = await fetch(process.env.REACT_APP_BACKEND_URL, {
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -16,7 +16,6 @@ function App() {
           },
         });
         const content = await response.json();
-        console.log("RESULT", content);
         setData(content);
         return;
       } catch (error) {
@@ -28,17 +27,21 @@ function App() {
   const postData = () => {
     (async () => {
       try {
-        const response = await fetch("http://192.168.178.21:8000/", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
+        const response = await fetch(
+          "https://candidate.hubteam.com/candidateTest/v3/problem/result?userKey=" +
+            process.env.REACT_APP_API_KEY,
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
         const content = await response.json();
-        console.log("RESULT", content);
         setData(content);
+
         return;
       } catch (error) {
         console.error(error);
@@ -48,21 +51,25 @@ function App() {
 
   return (
     <div className="App">
-      <button
-        onClick={() => {
-          getData();
-        }}
-      >
-        Get Data
-      </button>
-      <button
-        onClick={() => {
-          postData();
-        }}
-      >
-        Post Data
-      </button>
-      <JSONPretty id="json-pretty" data={data}></JSONPretty>
+      <div style={{ height: "5vh" }}>
+        <button
+          onClick={() => {
+            getData();
+          }}
+        >
+          Get Data
+        </button>
+        <button
+          onClick={() => {
+            postData();
+          }}
+        >
+          Post Data
+        </button>
+      </div>
+      <div style={{ height: "95vh", overflowY: "scroll" }}>
+        <JSONPretty id="json-pretty" data={data}></JSONPretty>
+      </div>
     </div>
   );
 }
