@@ -1,11 +1,11 @@
 # Hubspot 2021 Online Application
 
-### Backend:
+### Frontend:
 - cd frontend
 - npm install
 - npm start
 
-### Frontend
+### Backend
 - cd APIskeleton
 - npm install
 - nodemon index.js
